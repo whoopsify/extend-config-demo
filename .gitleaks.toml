@@ -11,58 +11,32 @@
 title = "gitleaks config"
 
 [extend]
-path = "extended-gitleaks.toml"
-
-[allowlist]
-description = "global allow lists"
-paths = [
-    '''gitleaks.toml''',
-    '''(.*?)(jpg|gif|doc|docx|zip|xls|pdf|bin|svg|socket)$''',
-    '''(go.mod|go.sum)$''',
-    '''node_modules''',
-    '''vendor''',
-]
+path = "central-gitleaks.toml"
 
 [[rules]]
-description = "Adobe Client ID (OAuth Web)"
-id = "adobe-client-id"
-regex = '''(?i)(?:adobe)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+description = "PlanetScale API token"
+id = "planetscale-api-token"
+regex = '''(?i)\b(pscale_tkn_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
 secretGroup = 1
 keywords = [
-    "adobe",
+    "pscale_tkn_",
 ]
 
 [[rules]]
-description = "Adobe Client Secret"
-id = "adobe-client-secret"
-regex = '''(?i)\b((p8e-)(?i)[a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
-keywords = [
-    "p8e-",
-]
-
-[[rules]]
-description = "Asana Client ID"
-id = "asana-client-id"
-regex = '''(?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:'|\"|\s|=|\x60){0,5}([0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+description = "PlanetScale OAuth token"
+id = "planetscale-oauth-token"
+regex = '''(?i)\b(pscale_oauth_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
 secretGroup = 1
 keywords = [
-    "asana",
+    "pscale_oauth_",
 ]
 
 [[rules]]
-description = "Asana Client Secret"
-id = "asana-client-secret"
-regex = '''(?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:=|\|\|:|<=|=>|:)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+description = "PlanetScale password"
+id = "planetscale-password"
+regex = '''(?i)\b(pscale_pw_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
 secretGroup = 1
 keywords = [
-    "asana",
+    "pscale_pw_",
 ]
 
-
-[[rules]]
-description = "AWS"
-id = "aws-access-token"
-regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
-keywords = [
-    "akia","agpa","aida","aroa","aipa","anpa","anva","asia",
-]
